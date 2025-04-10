@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hello-mcp"
+version = "0.1.0"
+description = "A simple MCP client and server implementation"
+readme = "README.md"
+authors = [
+    {name = "Cookie Yao", email = "cookie3702@gmail.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "httpx>=0.23.0",
+    "pyyaml>=6.0",
+    "mcp[cli]>=0.1.0",
+    "uvicorn>=0.17.6",
+    "fastapi>=0.95.0",
+]
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.10.0",
+    "mypy>=1.0.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Cookie-HOO/hello-mcp"
+"Bug Tracker" = "https://github.com/Cookie-HOO/hello-mcp/issues"
+
+[project.scripts]
+hello-mcp-sse-client = "hello_mcp.client2sse:main"
+hello-mcp-stdio-client = "hello_mcp.client2stdio:main"
+hello-mcp-server = "hello_mcp.server:main"
+
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
